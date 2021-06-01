@@ -1,5 +1,5 @@
 # russet
-a set of modules i use for personal projects.
+a set of lua modules i use for personal game projects.
 likely to have api breaking changes often.
 
 # modules
