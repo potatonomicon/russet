@@ -537,7 +537,6 @@ end
 -- AMOUNT controls the length of the result.
 -- (vec contact, vec normal, float amount) -> self
 function vec:bounce(contact, normal, amount)
-  assert(normal)
   local a = -2 * self:dot(normal)
   self.x = -(a * normal.x + (self.x - contact.x))
   self.y = -(a * normal.y + (self.y - contact.y))
