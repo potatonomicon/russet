@@ -43,6 +43,9 @@ local max   = math.max
 local sign  = math.sign
 local lerp  = math.lerp
 local near  = math.near
+local pi    = math.pi
+
+local winding2D = math.winding2D
 
 local vec = {}
 vec.__index = vec
@@ -221,7 +224,7 @@ end
 function vec:direction(v)
   local angle = atan2(v.y - self.y, v.x - self.x)
   if angle < 0 then 
-    return angle + 2 * math.pi
+    return angle + 2 * pi
   end
   return angle
 end
@@ -237,7 +240,7 @@ end
 function vec:angle()
   local angle = atan2(self.y, self.x)
   if angle < 0 then 
-    return angle + 2 * math.pi
+    return angle + 2 * pi
   end
   return angle
 end
@@ -311,7 +314,7 @@ end
 -- () -> self
 function vec:floor()
   self.x = floor(self.x)
-  self.y = floor(self.x)
+  self.y = floor(self.y)
   return self
 end
 
@@ -325,7 +328,7 @@ end
 -- () -> self
 function vec:ceiling()
   self.x = ceil(self.x)
-  self.y = ceil(self.x)
+  self.y = ceil(self.y)
   return self
 end
 
@@ -556,7 +559,7 @@ end
 -- AMOUNT controls the length of the result.
 -- (vec contact, vec normal, float amount) -> self
 function vec:slide(contact, normal, amount)
-  local side = math.winding2D(contact.x, contact.y, self.x, self.y, self.x + normal.x, self.y + normal.y)
+  local side = winding2D(contact.x, contact.y, self.x, self.y, self.x + normal.x, self.y + normal.y)
   -- rotate 90 degrees clockwise from normal to surface to slide on.
   self.x =  normal.y
   self.y = -normal.x
