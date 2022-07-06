@@ -43,10 +43,11 @@ function utility.intersectPointCapsule(out, p, a, b, radius)
   local t = math.clamp(((apx * abx) + (apy * aby)) / ((abx * abx) + (aby * aby)), 0, 1)
   out.x = a.x + (t * abx)
   out.y = a.y + (t * aby)
-  return insideCircle(p, out, radius)
+  return utility.insideCircle(p, out, radius)
 end
 
 -- convert HSLA color into RGBA color. all parameters should be normalized.
+-- returned RGBA colors are normalized.
 -- (float h, float s, float l, float a) -> float r, float g, float b, float a
 function utility.hsla(h, s, l, a)
   local r = math.clamp(math.abs(((h * 6 + 0) % 6) - 3) - 1, 0, 1)
@@ -60,6 +61,7 @@ function utility.hsla(h, s, l, a)
 end
 
 -- convert HSVA color into RGBA color. all parameters should be normalized.
+-- returned RGBA colors are normalized.
 -- (float h, float s, float v, float a) -> float r, float g, float b, float a
 function utility.hsva(h, s, v, a)
   return (v * math.lerp(1, math.clamp(math.abs(math.fract(h + (1    )) * 6 - 3) - 1, 0, 1), s)),
