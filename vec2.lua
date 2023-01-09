@@ -388,6 +388,7 @@ function vec:clamp(vmin, vmax)
   if self.is(vmax) then
     self.x = min(max(vmin.x, self.x), vmax.x)
     self.y = min(max(vmin.y, self.y), vmax.y)
+    return self
   end
   self.x = min(max(vmin, self.x), vmax)
   self.y = min(max(vmin, self.y), vmax)
@@ -760,6 +761,7 @@ end
 -- compare two vectors for near equality.
 -- (a == b) -> bool
 function vec.__eq(a, b)
+  print('asdasd')
   if vec.is(a) and vec.is(b) then
     return near(a.x, b.x) and near(a.y, b.y)
   elseif vec.is(a) then
