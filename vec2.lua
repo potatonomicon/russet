@@ -761,7 +761,6 @@ end
 -- compare two vectors for near equality.
 -- (a == b) -> bool
 function vec.__eq(a, b)
-  print('asdasd')
   if vec.is(a) and vec.is(b) then
     return near(a.x, b.x) and near(a.y, b.y)
   elseif vec.is(a) then
